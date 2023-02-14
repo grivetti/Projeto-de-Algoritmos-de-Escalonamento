@@ -42,22 +42,15 @@ OBJS := $(subst $(SOURCEDIR),$(BUILDDIR),$(SOURCES:.c=.o))
 DEPS = $(OBJS:.o=.d)
 
 # Name the compiler
-CC = musl-clang
+CC = gcc
 
 # OS specific part
-ifeq ($(OS),Windows_NT)
-	RM = del /F /Q 
-	RMDIR = -RMDIR /S /Q
-	MKDIR = -mkdir
-	ERRIGNORE = 2>NUL || true
-	SEP=\\
-else
-	RM = rm -rf 
-	RMDIR = rm -rf 
-	MKDIR = mkdir -p
-	ERRIGNORE = 2>/dev/null
-	SEP=/
-endif
+
+RM = rm -rf 
+RMDIR = rm -rf 
+MKDIR = mkdir -p
+ERRIGNORE = 2>/dev/null
+SEP=/
 
 # Remove space after separator
 PSEP = $(strip $(SEP))
